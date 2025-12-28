@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Schadensverteilung</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h1>Schadensverteilung</h1>
+
+  <!-- Setup -->
+  <div id="setup">
+    <label for="playerCount">Spieleranzahl</label>
+    <input type="number" id="playerCount" min="5" max="7" value="5">
+    <button onclick="createPlayers()">Weiter</button>
+  </div>
+
+  <!-- Spielbereich -->
+  <div id="game"></div>
+
+  <!-- Sticky Action Bar -->
+  <div class="action-bar">
+    <button class="primary" onclick="calculateDamage()">
+      Runde auswerten
+    </button>
+  </div>
+
+  <script src="app.js"></script>
+  <a href="https://www.google.de">Link</a>
+</body>
+</html>
