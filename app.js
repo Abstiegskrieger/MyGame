@@ -2,6 +2,7 @@ let roles = [];
 let choices = [];
 let numberPlayers = 0;
 let playerNames = [];
+let hasChosen = [];
 
 function createPlayers() {
   numberPlayers = parseInt(document.getElementById("playerCount").value);
@@ -10,6 +11,8 @@ function createPlayers() {
 
   roles = new Array(numberPlayers).fill("-");
   choices = new Array(numberPlayers).fill(0);
+  hasChosen = new Array(numberPlayers).fill(false);
+  updateCalculateButtonVisibility();
   playerNames = new Array(numberPlayers).fill("");
 
   for (let i = 0; i < numberPlayers; i++) {
@@ -36,7 +39,9 @@ function createPlayers() {
       <div class="select-wrapper">
         Ziel:
         <div class="select-container">
-          <select id="target-${i}" onchange="choices[${i}] = parseInt(this.value)">
+			<select id="target-${i}"
+				onfocus="hasChosen[${i}] = true;updateCalculateButtonVisibility();"
+				onchange="choices[${i}] = parseInt(this.value);">
             ${createChoiceOptions(i)}
           </select>
           <div class="overlay"></div>
@@ -144,4 +149,17 @@ function calculateDamage() {
     const select = document.getElementById(`target-${i}`);
     if (select) select.value = 0;
   }
+  for (let i = 0; i < numberPlayers; i++) {
+  hasChosen[i] = false;
+  }
+
+updateCalculateButtonVisibility();
+}
+
+function updateCalculateButtonVisibility() {
+  const btn = document.getElementById("calculateBtn");
+  if (!btn) return;
+
+  const allChosen = hasChosen.length > 0 && hasChosen.every(v => v === true);
+  btn.style.display = allChosen ? "block" : "none";
 }
