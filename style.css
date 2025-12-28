@@ -28,10 +28,20 @@ h1 {
 
 #setup input,
 #setup button {
-  min-height: 44px;
+  background: #e74c3c;      /* gleiche Farbe wie "Runde auswerten" */
+  color: #fff;
+  font-weight: 600;
   font-size: 16px;
+  border-radius: 12px;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
 }
 
+#setup button:hover {
+  background: #c0392b; /* dunklerer Ton beim Hover */
+}
 /* ===== Spielbereich ===== */
 #game {
   display: flex;
