@@ -75,15 +75,17 @@ function updateDropdowns() {
 
 function setRole(index, value) {
   if (value === "+") {
-    // Alle anderen Spieler auf Normal setzen
+    // Es darf nur EINEN Mediziner geben
     for (let i = 0; i < roles.length; i++) {
-      roles[i] = "-";
-      const select = document.getElementById(`role-${i}`);
-      if (select) select.value = "-";
+      if (i !== index && roles[i] === "+") {
+        roles[i] = "-";
+        const otherSelect = document.getElementById(`role-${i}`);
+        if (otherSelect) otherSelect.value = "-";
+      }
     }
   }
 
-  // Rolle des aktuellen Spielers setzen (auch zurück auf "-")
+  // Rolle des Spielers explizit setzen (auch zurück auf "-")
   roles[index] = value;
 }
 
