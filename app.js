@@ -75,13 +75,15 @@ function updateDropdowns() {
 
 function setRole(index, value) {
   if (value === "+") {
+    // Alle anderen Spieler auf Normal setzen
     for (let i = 0; i < roles.length; i++) {
-      if (i !== index) roles[i] = "-";
+      roles[i] = "-";
+      const select = document.getElementById(`role-${i}`);
+      if (select) select.value = "-";
     }
-    document.querySelectorAll(".player select:first-of-type").forEach((select, i) => {
-      if (i !== index) select.value = "-";
-    });
   }
+
+  // Rolle des aktuellen Spielers setzen (auch zurück auf "-")
   roles[index] = value;
 }
 
